@@ -15,7 +15,6 @@ function Result({ data }) {
     setDifficulty,
     setType,
   } = useGlobalContext();
-  console.log(data);
   const handleRetry = () => {
     setNumItem(0);
   };

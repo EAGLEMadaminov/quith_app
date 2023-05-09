@@ -29,7 +29,6 @@ const Approvider = ({ children }) => {
     try {
       const { data } = await axios.get(url);
       setInfo(data.results);
-      console.log(data.results);
     } catch (error) {
       console.log(error);
     }
