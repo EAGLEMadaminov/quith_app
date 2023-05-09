@@ -14,12 +14,12 @@ const Approvider = ({ children }) => {
   const [category, setCategory] = useState("");
   const [difficulty, setDifficulty] = useState("");
   const [type, setType] = useState("");
-  const [choosen, setChoosen] = useState(false);
-  const [incorrect, setIncorrect] = useState(false);
+  const [incorrect, setIncorrect] = useState(1);
+  const [numItem, setNumItem] = useState(0);
+  const [correctNum, setCorrectNum] = useState(0);
 
   const chooseBtn = (e) => {
     e.preventDefault();
-    setChoosen(true);
     let setUrl = `${url}${amount}${category}${difficulty}${type}`;
     getAllData(setUrl);
     router.push("/quith");
@@ -39,18 +39,21 @@ const Approvider = ({ children }) => {
   return (
     <AppContext.Provider
       value={{
-        info,
         loading,
-        amount,
         setLoading,
+        info,
+        amount,
         setAmount,
         setCategory,
         setDifficulty,
         setType,
-        setChoosen,
         setIncorrect,
         incorrect,
         chooseBtn,
+        numItem,
+        setNumItem,
+        correctNum,
+        setCorrectNum
       }}
     >
       {children}

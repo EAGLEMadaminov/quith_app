@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useGlobalContext } from "@/context";
-import { useRouter } from "next/router";
 
 function ChooseQuestion() {
   const {
@@ -9,10 +8,8 @@ function ChooseQuestion() {
     setCategory,
     setDifficulty,
     setType,
-    setChoosen,
     chooseBtn,
   } = useGlobalContext();
-  const router = useRouter();
 
   return (
     <div className="flex align-middle pt-[100px]">
