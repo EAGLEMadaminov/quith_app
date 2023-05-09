@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useGlobalContext } from "../context.jsx";
-import Result from "./Result.jsx";
+import Result from "../components/Result.jsx";
 import _ from "lodash";
 
 function Questions() {
