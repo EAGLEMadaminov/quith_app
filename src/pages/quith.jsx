@@ -9,13 +9,13 @@ function Questions() {
     loading,
     correctNum,
     setCorrectNum,
-    incorrect,
-    setIncorrect,
     numItem,
     setNumItem,
+    item,
+    setItem,
   } = useGlobalContext();
 
-  const [ansBtnColor, setAnsBtnColor] = useState("red");
+  const [ansBtnColor, setAnsBtnColor] = useState("bg-red-400");
 
   if (loading) {
     return (
@@ -32,27 +32,29 @@ function Questions() {
       </div>
     );
   }
-  let checkIncor = [];
+  let checkItem = [];
 
+  setItem(info[numItem]);
   if (info.length === numItem) {
-    return <Result data={checkIncor} />;
+    return <Result data={checkItem} item={item} />;
   }
 
-  let item = info[numItem];
-  const newIncorAnswers = new Set(item.incorrect_answers);
-  let newAnswers = [...newIncorAnswers, item.correct_answer];
+  const newIncorAnswers = new Set(item?.incorrect_answers);
+  let newAnswers = [...newIncorAnswers, item?.correct_answer];
   newAnswers = _.shuffle(newAnswers);
+
   const handleCheckBtn = (e) => {
+    console.log(item);
     let index = e.currentTarget.dataset.key;
     if (newAnswers[index] === item.correct_answer) {
       setCorrectNum(correctNum + 1);
-      setAnsBtnColor("blue");
-      setIncorrect(2);
+      item.question = item.question + " ✔";
     } else {
-      setIncorrect(1);
+      setAnsBtnColor("bg-red-400");
+      item.question = item.question + " ✘";
     }
+    checkItem.push(item);
     setNumItem(numItem + 1);
-    checkIncor.push(incorrect);
   };
   return (
     <div className="bg-[linear-gradient(90deg,#5041b2,#7969e6)] py-5 h-[100vh] pt-[100px] ">
@@ -64,7 +66,7 @@ function Questions() {
           {numItem + 1} out of {info.length}
         </p>
         <h2 className="text-xl text-white p-3 mt-3">
-          {numItem + 1} {item.question}
+          {numItem + 1} {item?.question}
         </h2>
         <div className="flex flex-col ">
           {newAnswers.map((one, inBtn) => {
@@ -73,7 +75,7 @@ function Questions() {
                 key={inBtn}
                 data-key={inBtn}
                 onClick={handleCheckBtn}
-                className={`border border-white m-2 p-1 px-3 text-left text-white rounded hover:bg-[#7666E2] active:bg-${ansBtnColor}-400`}
+                className={`border border-white m-2 p-1 px-3 text-left text-white rounded hover:bg-[#7666E2] active:${ansBtnColor}`}
               >
                 {one}
               </button>

@@ -3,20 +3,35 @@ import { useGlobalContext } from "@/context";
 import { useRouter } from "next/router";
 import { BsArrowRepeat } from "react-icons/bs";
 import { BiChevronsRight } from "react-icons/bi";
-function Result({ data }) {
+function Result({ data, item }) {
   const router = useRouter();
+  console.log(data);
   const {
     correctNum,
     setCorrectNum,
     info,
+    numItem,
     setNumItem,
     setAmount,
     setCategory,
     setDifficulty,
     setType,
+    setInfo,
   } = useGlobalContext();
+  console.log(item);
+
   const handleRetry = () => {
+    let newA = info.map((item) => {
+      let newI = item.question.split("");
+      newI.pop();
+      newI = newI.join("");
+      item.question = newI;
+      return item;
+    });
+    console.log(newA);
+    setInfo(newA);
     setNumItem(0);
+    setCorrectNum(0);
   };
 
   const handleSelect = () => {
@@ -25,6 +40,7 @@ function Result({ data }) {
     setAmount(10);
     setCategory("");
     setType("");
+    setDifficulty("");
   };
   return (
     <div className="bg-[linear-gradient(90deg,#5041b2,#7969e6)]">

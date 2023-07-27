@@ -17,6 +17,7 @@ const Approvider = ({ children }) => {
   const [incorrect, setIncorrect] = useState(1);
   const [numItem, setNumItem] = useState(0);
   const [correctNum, setCorrectNum] = useState(0);
+  const [item, setItem] = useState([]);
 
   const chooseBtn = (e) => {
     e.preventDefault();
@@ -41,6 +42,7 @@ const Approvider = ({ children }) => {
         loading,
         setLoading,
         info,
+        setInfo,
         amount,
         setAmount,
         setCategory,
@@ -52,7 +54,9 @@ const Approvider = ({ children }) => {
         numItem,
         setNumItem,
         correctNum,
-        setCorrectNum
+        setCorrectNum,
+        item,
+        setItem,
       }}
     >
       {children}

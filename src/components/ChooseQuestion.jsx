@@ -1,15 +1,10 @@
 import React from "react";
 import { useGlobalContext } from "@/context";
+import { BsCaretRight } from "react-icons/bs";
 
 function ChooseQuestion() {
-  const {
-    amount,
-    setAmount,
-    setCategory,
-    setDifficulty,
-    setType,
-    chooseBtn,
-  } = useGlobalContext();
+  const { amount, setAmount, setCategory, setDifficulty, setType, chooseBtn } =
+    useGlobalContext();
 
   return (
     <div className="flex align-middle pt-[100px]">
@@ -85,10 +80,13 @@ function ChooseQuestion() {
           </select>
         </form>
         <button
-          className="mx-auto mt-8 py-2  bg-[#AB47BC] text-white w-full  rounded-[5px]"
+          className="mx-auto mt-8 py-2 flex items-center justify-center bg-[#AB47BC] text-white w-full  rounded-[5px]"
           onClick={chooseBtn}
         >
-          <span className="text-xl">&#128710;</span> START
+          <span className="text-2xl mx-1">
+            <BsCaretRight />
+          </span>
+          START
         </button>
       </div>
     </div>
